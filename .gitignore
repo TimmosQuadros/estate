@@ -22,3 +22,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# API keys and secrets
+serviceAccountKey.json
+
+# Images
+*.svg
+*.jpg
+*.png
+
+# Package.json
+package.json
+package-lock.json
+
+# eslint
+.eslintrc.cjs
