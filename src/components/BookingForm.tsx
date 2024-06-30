@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Booking } from '../types';
+import { Booking } from '../types/types.ts';
 
 interface BookingFormProps {
     estateId: number;

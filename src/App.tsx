@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import {Booking, Estate} from "./types";
+import {Booking, Estate} from "./types/types.ts";
 import BookingForm from "./components/BookingForm.tsx";
 import EstateList from "./components/EstateList.tsx";
 
@@ -14,12 +14,31 @@ function App() {
     const handleSelectEstate = (id: number) => {
         setSelectedEstateId(id);
     };
-    const handleBookingSubmit = (booking: Booking) => {
+
+    const handleBookingSubmit = async (booking: Booking) => {
         console.log('Booking submitted:', booking);
-        // Handle booking submission logic here (e.g., send to server)
+        try {
+            const response = await fetch('https://us-central1-realestatebooking.cloudfunctions.net/app/bookings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(booking),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            console.log('Booking submitted:', data);
+        } catch (error) {
+            console.error('Error submitting booking:', error);
+        }
     };
 
-  return (
+
+    return (
       <>
           <div>
               <EstateList estates={estates} onSelectEstate={handleSelectEstate}/>

@@ -1,3 +1,5 @@
+import { DocumentData } from 'firebase-admin/firestore';
+
 export interface Estate {
     id: number;
     title: string;
@@ -6,7 +8,7 @@ export interface Estate {
     price: number;
 }
 
-export interface Booking {
+export interface Booking extends DocumentData {
     estateId: number;
     name: string;
     email: string;

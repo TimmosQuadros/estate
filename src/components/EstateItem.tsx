@@ -1,5 +1,5 @@
 import React from 'react';
-import { Estate } from '../types';
+import { Estate } from '../types/types.ts';
 
 interface EstateItemProps {
     estate: Estate;
