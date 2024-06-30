@@ -6,6 +6,7 @@ export interface Estate {
     description: string;
     address: string;
     price: number;
+    imageUrl: string;
 }
 
 export interface Booking extends DocumentData {

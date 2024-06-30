@@ -1,14 +1,13 @@
-import { useState } from 'react'
-import './App.css'
-import {Booking, Estate} from "./types/types.ts";
+import { useState } from 'react';
+import './App.css';
+import { Booking, Estate } from "./types/types.ts";
 import BookingForm from "./components/BookingForm.tsx";
 import EstateList from "./components/EstateList.tsx";
 
 function App() {
-
     const [estates] = useState<Estate[]>([
-        { id: 1, title: 'Estate 1', description: 'Description 1', address: 'Address 1', price: 100000 },
-        { id: 2, title: 'Estate 2', description: 'Description 2', address: 'Address 2', price: 200000 },
+        { id: 1, title: 'Estate 1', description: 'Description 1', address: 'Address 1', price: 100000, imageUrl: 'src/assets/Møllevænget.jpg' },
+        { id: 2, title: 'Estate 2', description: 'Description 2', address: 'Address 2', price: 200000, imageUrl: 'src/assets/Møllevænget.jpg' },
     ]);
     const [selectedEstateId, setSelectedEstateId] = useState<number | null>(null);
     const handleSelectEstate = (id: number) => {
@@ -37,17 +36,14 @@ function App() {
         }
     };
 
-
     return (
-      <>
-          <div>
-              <EstateList estates={estates} onSelectEstate={handleSelectEstate}/>
-              {selectedEstateId !== null && (
-                  <BookingForm estateId={selectedEstateId} onSubmit={handleBookingSubmit}/>
-              )}
-          </div>
-      </>
-  )
+        <div className="app-container">
+            <EstateList estates={estates} onSelectEstate={handleSelectEstate} />
+            {selectedEstateId !== null && (
+                <BookingForm estateId={selectedEstateId} onSubmit={handleBookingSubmit} />
+            )}
+        </div>
+    );
 }
 
-export default App
+export default App;
