@@ -18,7 +18,7 @@ function App() {
     const handleBookingSubmit = async (booking: Booking) => {
         console.log('Booking submitted:', booking);
         try {
-            const response = await fetch('https://us-central1-realestatebooking.cloudfunctions.net/app/bookings', {
+            const response = await fetch('https://europe-west3-realestatebooking.cloudfunctions.net/app/bookings', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
