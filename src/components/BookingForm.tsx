@@ -10,40 +10,43 @@ const BookingForm: React.FC<BookingFormProps> = ({ estateId, onSubmit }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [date, setDate] = useState('');
-    const [time, setTime] = useState(''); // New state for time
+    const [time, setTime] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const bookingDate = `${date}T${time}`; // Combine date and time
-        onSubmit({ estateId, name, email, date: bookingDate });
+        onSubmit({ estateId, name, email, date: `${date}T${time}` });
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="booking-form">
             <h3>Book a Presentation</h3>
             <input
                 type="text"
                 placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                className="form-input"
             />
             <input
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="form-input"
             />
             <input
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
+                className="form-input"
             />
             <input
                 type="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
+                className="form-input"
             />
-            <button type="submit">Submit</button>
+            <button type="submit" className="submit-button">Submit</button>
         </form>
     );
 };
