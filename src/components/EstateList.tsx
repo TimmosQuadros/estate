@@ -1,22 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Estate } from '../types/types.ts';
+import isSafari from "../utils/utils.tsx";
 
 interface EstateListProps {
     estates: Estate[];
-    onSelectEstate: (id: number) => void;
 }
 
-const EstateList: React.FC<EstateListProps> = ({ estates, onSelectEstate }) => {
+const EstateList: React.FC<EstateListProps> = ({ estates }) => {
+    const imageClass = isSafari() ? "estate-image-safari" : "estate-image";
     return (
-        <div className="estate-grid">
+        <div className="estate-list">
             {estates.map((estate) => (
-                <div key={estate.id} className="estate-card" onClick={() => onSelectEstate(estate.id)}>
-                    <img src={estate.imageUrl} alt={estate.title} className="estate-image" />
-                    <h3>{estate.title}</h3>
-                    <p>{estate.description}</p>
-                    <p>{estate.address}</p>
-                    <p>Price: ${estate.price}</p>
-                </div>
+                <Link to={`/booking/${estate.id}`} key={estate.id} className="estate-card">
+                    <div>
+                        <img src={estate.imageUrl} alt={estate.title} className={imageClass}/>
+                        <h2>{estate.title}</h2>
+                        <p>{estate.description}</p>
+                        <p>{estate.address}</p>
+                        <p>Price: DKK{estate.price}</p>
+                    </div>
+                </Link>
             ))}
         </div>
     );
