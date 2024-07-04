@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Estate, Booking } from '../types/types.ts';
-import BookingForm from './BookingForm.tsx';
-import isSafari from "../utils/utils.tsx";
+import { Estate, Booking } from '../types/types';
+import BookingForm from './BookingForm';
+import isSafari from "../utils/utils";
 
 interface EstateDetailProps {
     estates: Estate[];
@@ -10,6 +10,12 @@ interface EstateDetailProps {
 
 const EstateDetail: React.FC<EstateDetailProps> = ({ estates }) => {
     const { id } = useParams<{ id: string }>();
+
+    // Type guard to ensure `id` is defined
+    if (!id) {
+        return <div>Estate not found</div>;
+    }
+
     const estate = estates.find(e => e.id === parseInt(id));
 
     if (!estate) {

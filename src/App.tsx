@@ -8,8 +8,8 @@ import EstateDetail from './components/EstateDetail.tsx';
 
 const App: React.FC = () => {
     const [estates] = useState<Estate[]>([
-        { id: 1, title: 'Villa i Ramløse', description: '138 kvm, 4 værelser, 2 bad/toilet, 1400 kvm grund', address: 'Møllevænget 15, 3200 Helsinge', price: 3900000, imageUrl: 'src/assets/Møllevænget.jpg' },
-        { id: 2, title: 'Estate 2', description: 'Description 2', address: 'Address 2', price: 200000, imageUrl: 'src/assets/Møllevænget.jpg' },
+        { id: 1, title: 'Villa i Ramløse', description: '138 kvm, 4 værelser, 2 bad/toilet, 1400 kvm grund', address: 'Møllevænget 15, 3200 Helsinge', price: 3900000, imageUrl: 'images/Møllevænget_2.jpg' },
+        //{ id: 2, title: 'Estate 2', description: 'Description 2', address: 'Address 2', price: 200000, imageUrl: 'src/assets/Møllevænget.jpg' },
     ]);
 
     return (

@@ -37,3 +37,6 @@ package-lock.json
 
 # eslint
 .eslintrc.cjs
+
+# Local Netlify folder
+.netlify
