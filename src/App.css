@@ -221,4 +221,14 @@
   background-color: #0056b3;
 }
 
+.estate-card .d-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.estate-card .d-flex .btn {
+  width: 100%;
+  max-width: 200px; /* Adjust as needed */
+}
+
 

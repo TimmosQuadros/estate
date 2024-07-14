@@ -2,6 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Estate, Booking } from '../types/types';
 import BookingForm from './BookingForm';
+import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
+import Card from 'react-bootstrap/Card';
 import isSafari from "../utils/utils";
 
 interface EstateDetailProps {
@@ -47,16 +50,24 @@ const EstateDetail: React.FC<EstateDetailProps> = ({ estates }) => {
     };
 
     return (
-        <div className="estate-detail">
-            <div className="estate-info">
-                <img src={'/'+estate.imageUrl} alt={estate.title} className={imageClass}/>
-                <h2>{estate.title}</h2>
-                <p>{estate.description}</p>
-                <p>{estate.address}</p>
-                <p>Price: ${estate.price}</p>
-            </div>
-            <BookingForm estateId={estate.id} onSubmit={handleBookingSubmit}/>
-        </div>
+        <Container className="estate-detail">
+            <Card>
+                <Image src={'/' + estate.imageUrl} alt={estate.title} className={imageClass} fluid />
+                <Card.Body>
+                    <Card.Header as="h2">{estate.title}</Card.Header>
+                    <Card.Text>
+                        <strong>Beskrivelse:</strong> {estate.description}
+                    </Card.Text>
+                    <Card.Text>
+                        <strong>Adresse:</strong> {estate.address}
+                    </Card.Text>
+                    <Card.Text>
+                        <strong>Pris:</strong> DKK {estate.price}
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+            <BookingForm estateId={estate.id} onSubmit={handleBookingSubmit} />
+        </Container>
     );
 };
 

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Estate } from '../types/types.ts';
+import { Estate } from '../types/types';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 interface EstateItemProps {
     estate: Estate;
@@ -8,12 +10,15 @@ interface EstateItemProps {
 
 const EstateItem: React.FC<EstateItemProps> = ({ estate, onSelect }) => {
     return (
-        <div onClick={() => onSelect(estate.id)}>
-            <h3>{estate.title}</h3>
-            <p>{estate.description}</p>
-            <p>{estate.address}</p>
-            <p>{estate.price}</p>
-        </div>
+        <Card onClick={() => onSelect(estate.id)} className="estate-card">
+            <Card.Body>
+                <Card.Title>{estate.title}</Card.Title>
+                <Card.Text>{estate.description}</Card.Text>
+                <Card.Text>{estate.address}</Card.Text>
+                <Card.Text>Price: DKK{estate.price}</Card.Text>
+                <Button variant="primary" onClick={() => onSelect(estate.id)}>View Details</Button>
+            </Card.Body>
+        </Card>
     );
 };
 

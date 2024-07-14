@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Booking } from '../types/types.ts';
+import { Booking } from '../types/types';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 interface BookingFormProps {
     estateId: number;
@@ -18,36 +20,46 @@ const BookingForm: React.FC<BookingFormProps> = ({ estateId, onSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="booking-form">
+        <Form onSubmit={handleSubmit} className="booking-form">
             <h3>Book a Presentation</h3>
-            <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="form-input"
-            />
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="form-input"
-            />
-            <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="form-input"
-            />
-            <input
-                type="time"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-                className="form-input"
-            />
-            <button type="submit" className="submit-button">Submit</button>
-        </form>
+            <Form.Group>
+                <Form.Control
+                    type="text"
+                    placeholder="Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="form-input"
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="form-input"
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                    type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    className="form-input"
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Control
+                    type="time"
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
+                    className="form-input"
+                />
+            </Form.Group>
+            <Button variant="primary" type="submit" className="submit-button">
+                Book
+            </Button>
+        </Form>
     );
 };
 

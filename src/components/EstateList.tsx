@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Estate } from '../types/types.ts';
-import isSafari from "../utils/utils.tsx";
+import { Estate } from '../types/types';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import isSafari from "../utils/utils";
+import Button from 'react-bootstrap/Button';
 
 interface EstateListProps {
     estates: Estate[];
@@ -10,19 +14,32 @@ interface EstateListProps {
 const EstateList: React.FC<EstateListProps> = ({ estates }) => {
     const imageClass = isSafari() ? "estate-image-safari" : "estate-image";
     return (
-        <div className="estate-list">
+        <Row>
             {estates.map((estate) => (
-                <Link to={`/booking/${estate.id}`} key={estate.id} className="estate-card">
-                    <div>
-                        <img src={estate.imageUrl} alt={estate.title} className={imageClass}/>
-                        <h2>{estate.title}</h2>
-                        <p>{estate.description}</p>
-                        <p>{estate.address}</p>
-                        <p>Price: DKK{estate.price}</p>
-                    </div>
-                </Link>
+                <Col key={estate.id} xs={12} sm={6} md={4} className="mb-3">
+                    <Link to={`/booking/${estate.id}`} className="estate-link">
+                        <Card className="estate-card">
+                            <Card.Img variant="top" src={estate.imageUrl} className={imageClass} />
+                            <Card.Body>
+                                <Card.Header as="h2">{estate.title}</Card.Header>
+                                <Card.Text>
+                                    <strong>Beskrivelse:</strong> {estate.description}
+                                </Card.Text>
+                                <Card.Text>
+                                    <strong>Adresse:</strong> {estate.address}
+                                </Card.Text>
+                                <Card.Text>
+                                    <strong>Pris:</strong> DKK {estate.price}
+                                </Card.Text>
+                                <div className="d-flex justify-content-center align-items-center">
+                                    <Button variant="primary">Book a Presentation</Button>
+                                </div>
+                            </Card.Body>
+                        </Card>
+                    </Link>
+                </Col>
             ))}
-        </div>
+        </Row>
     );
 };
 
