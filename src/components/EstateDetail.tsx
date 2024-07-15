@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Estate, Booking } from '../types/types';
 import BookingForm from './BookingForm';
 import Container from 'react-bootstrap/Container';
@@ -13,6 +13,7 @@ interface EstateDetailProps {
 
 const EstateDetail: React.FC<EstateDetailProps> = ({ estates }) => {
     const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
 
     // Type guard to ensure `id` is defined
     if (!id) {
@@ -44,8 +45,10 @@ const EstateDetail: React.FC<EstateDetailProps> = ({ estates }) => {
 
             const data = await response.json();
             console.log('Booking submitted:', data);
+            navigate('/confirmation', { state: { success: true, booking: { ...booking, id: data.id } } });
         } catch (error) {
             console.error('Error submitting booking:', error);
+            navigate('/confirmation', { state: { success: false } });
         }
     };
 

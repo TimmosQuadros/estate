@@ -32,7 +32,7 @@ const EstateList: React.FC<EstateListProps> = ({ estates }) => {
                                     <strong>Pris:</strong> DKK {estate.price}
                                 </Card.Text>
                                 <div className="d-flex justify-content-center align-items-center">
-                                    <Button variant="primary">Book a Presentation</Button>
+                                    <Button variant="primary" className="book-presentation-button">Book a Presentation</Button>
                                 </div>
                             </Card.Body>
                         </Card>
